@@ -1,30 +1,37 @@
+#include <Servo.h>
+
+Servo servo[3];
+
+typedef struct ServoWeight {
+  float right; // バネの右側に位置するサーボの重み
+  float left; // バネの左側に位置するサーボの重み
+} ServoWeight;
+
+// 使うサーボが１個の時の重み
+ServoWeight weight[3];
+// 使うサーボが2個の時の重み
+ServoWeight weight2[3];
+
+void rotateTo(Servo s, float angle) {
+  s.write(angle);
+}
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
+
+  servo[0].attach(2);
+  servo[0].write(0);
+  servo[1].attach(3);
+  servo[1].write(0);
+  servo[2].attach(4);
+  servo[2].write(0);
 }
 
+float delayDuration = 0;
 void loop() {
-  // put your main code here, to run repeatedly:
-  float delayDuration = 0;
-  if (analogRead(A0) > 500) {
-    Serial.println("yeah");
-    delayDuration = 100;
-  }
-  
-  int s = 650;
-  int x = analogRead(A3) - s;
-  int y = analogRead(A4) - s;
-  int z = analogRead(A5) - s;
-  int n = sqrt(x*x + y*y + z*z);
-  if (n > 150) {
-    Serial.print(x);
-    Serial.print(",");
-    Serial.print(y);
-    Serial.print(",");
-    Serial.println(z);
-    Serial.println("w");
-    delayDuration = 100;
-  }
-  
+// 重みに応じてサーボの回転量を調整
+//  servo.write(角度 * 重み); と言った具合
+
   delay(delayDuration);
 }
