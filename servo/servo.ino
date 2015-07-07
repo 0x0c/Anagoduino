@@ -12,14 +12,14 @@ void setup()
 	servo[1].write(0);
 	servo[2].attach(3);
 	servo[2].write(0);
-  delay(2000);
+  delay(1000);
 }
 
 int i = 0;
 int pos = 0;    // variable to store the servo position 
 int flag = 0;
 
-int delay_duration = 70;
+int delay_duration = 30;
 
 bool stop_servo = 0;
 void loop()
