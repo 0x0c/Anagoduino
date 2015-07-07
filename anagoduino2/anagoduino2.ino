@@ -1,7 +1,3 @@
-#include <StandardCplusplus.h>
-#include <system_configuration.h>
-#include <unwind-cxx.h>
-#include <utility.h>
 #include <vector>
 #include <Servo.h>
 
@@ -35,7 +31,7 @@ namespace Anagoduino
 		/* function */
 		void bend(int indexs[], int angles[], float duration) {
 			int start_angle1 = this->servo_angle[indexs[0]];
-			int start_angle2 = this->servo_angle[indexs[0]];
+			int start_angle2 = this->servo_angle[indexs[1]];
 			int end_angle = max(angles[0], angles[1]);
 			float step = end_angle / duration;
 			float wait = duration / step;
